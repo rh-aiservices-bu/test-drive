@@ -17,7 +17,7 @@
               "dependencies": [
                 "data/card_transdata.csv"
               ],
-              "include_subdirectories": true,
+              "include_subdirectories": false,
               "outputs": [
                 "models/fraud/1/model.onnx"
               ],
@@ -168,14 +168,14 @@
           "name": "4 Train Save",
           "runtime": "Data Science Pipelines",
           "pipeline_defaults": {
+            "kubernetes_pod_labels": [],
             "kubernetes_shared_mem_size": {},
+            "kubernetes_tolerations": [],
             "mounted_volumes": [],
             "kubernetes_pod_annotations": [],
-            "kubernetes_tolerations": [],
-            "kubernetes_pod_labels": [],
             "env_vars": [],
             "kubernetes_secrets": [],
-            "runtime_image": "quay.io/modh/runtime-images@sha256:8df90db22b29afb1cd9c81d52be9145fed50e3b04ec80bb7ea7ecaa7476dbe5c"
+            "runtime_image": "quay.io/modh/runtime-images@sha256:647c65023e62f292161640e6420d564ac618ed441b5b542e6fd7d81497e5f28a"
           },
           "pipeline_parameters": []
         }
