@@ -2,7 +2,7 @@ apiVersion: workload.codeflare.dev/v1beta1
 kind: AppWrapper
 metadata:
   name: raytest
-  namespace: default
+  namespace: $(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
 spec:
   resources:
     GenericItems:
@@ -33,7 +33,7 @@ spec:
             controller-tools.k8s.io: '1.0'
             workload.codeflare.dev/appwrapper: raytest
           name: raytest
-          namespace: default
+          namespace: $(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
         spec:
           autoscalerOptions:
             idleTimeoutSeconds: 60
@@ -101,7 +101,7 @@ spec:
                 volumes:
                 - name: ray-results
                   persistentVolumeClaim:
-                    claimName: my-results
+                    claimName: ray-results
                 imagePullSecrets: []
           rayVersion: 2.7.0
           workerGroupSpecs:
@@ -157,7 +157,7 @@ spec:
                 volumes:
                 - name: ray-results
                   persistentVolumeClaim:
-                    claimName: my-results
+                    claimName: ray-results
                 imagePullSecrets: []
                 initContainers:
                 - command:
@@ -173,10 +173,10 @@ spec:
         kind: Ingress
         metadata:
           name: ray-dashboard-raytest
-          namespace: default
+          namespace: $(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
         spec:
           rules:
-          - host: ray-dashboard-raytest-default.apps.cluster-kv4f8.dynamic.redhatworkshops.io
+          - host: raytest-head-svc.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local
             http:
               paths:
               - backend:
