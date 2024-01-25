@@ -1,7 +1,7 @@
 import yaml
 
 def namespace_specific_yaml(username):
-    with open("raytest_special.yaml", "r") as stream:
+    with open("7_raytest_template.yaml", "r") as stream:
         try:
             yaml_info = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
